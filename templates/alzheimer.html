@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="input-display">
+    <img src="/static/pytorch.png" class="background-logo" alt="PyTorch">
+    <h3>Input the MRI Image</h3>
+
+    <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+        <input type="file" multiple="false" accept="image/*" onchange="displayImage(event)" name="img">
+        <input type="submit">
+    </form>
+</div>
+
+<div class="clear-button" id="image-container" style="display: none;">
+    <img id="selected-image" alt="Selected Image">
+    <input type="button" value="Clear Image" onclick="clearImage()"></input>
+</div>
+
+{% if prediction %}
+    <div class="prediction-container">
+        <h4>{{ prediction }}</h4>
+    </div>
+{% endif %}
+
+<script src="/static/script.js"></script>
+
+{% endblock content %}
