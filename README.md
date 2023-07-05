@@ -1,19 +1,22 @@
-<div style="text-align:center ">
-    <h1>
-        <a href="https://alzheimer-detection.onrender.com/"> Alzheimer Prediction</a> 
-    </h1>
+<div align="center">
+    <h1><a href="https://alzheimer-detection.onrender.com/"> Alzheimer Prediction </a> (Deployed Application)</h1>
 </div>
 
-Web application deployment for alzheimer detection from MRI images
+<div align="center">
+    <img width="925" alt="alzheimer-app-screenshot" src="https://github.com/Kartikeya2710/alzheimer-app/assets/77334373/f8c8cbb3-4436-449d-b0fa-6b499888bbb0">
+
+    Web application deployment for Alzheimer's detection from MRI images
+</div>
+
 
 ## <div align="center">Documentation</div>
 
-1. Build Docker image with `docker-compose`
+1. Build a Docker image with `docker-compose`
     ```bash
     docker-compose build --no-cache
     ```
 
-2. Run Docker container with `docker-compose`
+2. Run the Docker container with `docker-compose`
     ```bash
     docker-compose -f docker-compose.yml up
     ```
