@@ -1,15 +1,24 @@
+from pathlib import Path
 import torch
 from fastapi import FastAPI, UploadFile, File, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 from model_utils import predict_image
-import uvicorn
-import imghdr
+import imghdr 
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static")
-model = torch.jit.load('scripted_model.pt', map_location='cpu')
+
+app.mount(
+    str(Path.cwd() / "static"),
+    StaticFiles(directory="static"),
+    name="static"
+)
+
+model = torch.jit.load(
+    'scripted_model.pt',
+    map_location='cpu'
+)
 model.eval()
 
 templates = Jinja2Templates(directory="templates")
@@ -39,7 +48,3 @@ async def predict(request: Request, img: UploadFile = File(...)):
         "alzheimer.html",
         {"request": request, "prediction": prediction}
     )
-
-
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8080, reload=True)

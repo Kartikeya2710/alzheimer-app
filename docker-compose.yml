@@ -1,0 +1,8 @@
+version: '3.6'
+services:
+    alzheimer-app:
+        image: kartikeyasharma27/alzheimer-app:1.0.0
+        build: .
+        ports:
+            - "8000:8000"
+        
