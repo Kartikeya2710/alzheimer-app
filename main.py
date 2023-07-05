@@ -1,4 +1,4 @@
-from pathlib import Path
+import os
 import torch
 from fastapi import FastAPI, UploadFile, File, Request
 from fastapi.responses import HTMLResponse
@@ -9,11 +9,9 @@ import imghdr
 
 app = FastAPI()
 
-app.mount(
-    str(Path.cwd() / "static"),
-    StaticFiles(directory="static"),
-    name="static"
-)
+static_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
+
+app.mount("/static", StaticFiles(directory=static_path), name="static")
 
 model = torch.jit.load(
     'scripted_model.pt',
